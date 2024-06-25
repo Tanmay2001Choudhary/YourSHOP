@@ -1,0 +1,45 @@
+<%- include('./partials/header') %>
+<% if(success.length>0){ %>
+<div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
+  <span class="inline-block mt-1 mb-1 text-white">
+    <%= success %>
+  </span>
+</div>
+<% } %>
+<div class="container mt-[11vh] mx-auto px-4 py-8">
+  <div class="flex justify-center flex-wrap gap-2">
+    <div class="w-full lg:w-3/4">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <% products.forEach(function(product){ %>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
+            <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+          </div>
+          <div class="p-4 bg-[<%= product.panelcolor %>] text-[<%= product.textcolor %>] flex justify-between items-center">
+            <div class="flex flex-col justify-between items-start mb-2">
+              <h3 class="text-lg font-semibold">
+                <%= product.name %>
+              </h3>
+              <div class="flex gap-2 items-center">
+                <h4 class="text-xl font-bold">
+                  ₹<%= product.price %>
+                </h4>
+                <% if(product.discount > 0) { %>
+                <h4 class="text-sm text-gray-800 font-bold">
+                  <%= product.discount %>% off
+                </h4>
+                <% } %>
+              </div>
+            </div>
+            <a class="w-8 h-8 flex items-center justify-center rounded-full bg-white text-gray-800 hover:bg-gray-200 transition" href="/addtocart/<%= product._id %>">
+              <i class="ri-add-line"></i>
+            </a>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const config = require('config')
 
-const dbgr = require('debug')('development:mongoose') //(kis phase se aa rha hai i.e. server status : message kis file se aane wala hai)
+const dbgr = require('debug')('development:mongoose')
 
 mongoose
-  .connect(`${config.get('MONGODB_URI')}/scatch`)
+  .connect(`${config.get('MONGODB_URI')}/onlineShop`)
   .then(function () {
     dbgr('connected')
   })
