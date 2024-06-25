@@ -1,13 +1,12 @@
 # YourSHOP
 
-YourSHOP is an online shopping platform that allows users to browse products, add items to their cart, and make purchases. The platform is built using Node.js, Express, and MongoDB.
+YourSHOP is an online shopping platform that allows users to browse products, add items to their cart. The platform is built using Node.js, Express, and MongoDB.
 
 ## Features
 
 - User Registration and Login
 - Product Browsing
 - Add to Cart Functionality
-- Cart Management
 - Admin Panel for Product Management
 
 ## Installation
