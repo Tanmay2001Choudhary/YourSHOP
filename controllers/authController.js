@@ -5,7 +5,10 @@ const { generateToken } = require('../utils/generateToken')
 module.exports.registerUser = async (req, res) => {
   try {
     const { email, password, fullname } = req.body
-
+    if (email === '' || password === '' || fullname === '') {
+      req.flash('error', 'All fields are required')
+      return res.redirect('/')
+    }
     let user = await userModel.findOne({ email })
     if (user) {
       req.flash('error', 'User Already Exists')
@@ -34,7 +37,10 @@ module.exports.registerUser = async (req, res) => {
 module.exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body
-
+    if (email === '' || password === '') {
+      req.flash('error', 'All fields are required')
+      return res.redirect('/')
+    }
     const user = await userModel.findOne({ email })
     if (!user) {
       req.flash('error', 'Email or Password incorrect')

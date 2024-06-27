@@ -15,7 +15,8 @@
   </style>
 </head>
 
-<body class="font-['Cutive']">
+<body class="font-['Cutive'] bg-gray-100">
+  <div class="w-full h-full flex flex-col gap-3">
   <nav class="w-full fixed top-0 left-0 px-5 py-3 flex items-center justify-between gap-2 bg-gradient-to-l from-blue-400 via-red-100 via-red-200 to-blue-100">
     <div class="flex items-center gap-2">
       <img class="w-20" src="/images/favicon_io/apple-touch-icon.png" alt="">
@@ -28,10 +29,13 @@
       <a class="bg-gradient-to-br from-amber-200 to-amber-500 px-3 py-2 rounded-lg" href="/cart">Cart <i class="text-xl ri-shopping-cart-fill"></i></a>
       <a class="bg-gradient-to-br from-red-200 to-red-500 px-3 py-2 rounded-lg" href="/users/logout">Logout</a>
     </div>
-    <% } else { %>
+    <% } else if(ownerLogin) { %>
     <div class="flex gap-5">
       <a class="bg-gradient-to-br from-green-200 to-green-500 px-3 py-2 rounded-lg" href="/owners/login">Owner Login</a>
     </div>
+    <% } else {%>
+    <div class="flex gap-5">
+      <a class="bg-gradient-to-br from-green-200 to-green-500 px-3 py-2 rounded-lg" href="/">User Login</a>
+    </div>
     <% } %>
-
   </nav>

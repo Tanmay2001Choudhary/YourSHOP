@@ -11,7 +11,7 @@
     <div class="w-full lg:w-3/4">
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <% products.forEach(function(product){ %>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="bg-white shadow-[0px_0px_10px_5px_#00000024] rounded-lg overflow-hidden">
           <div class="w-full h-52 flex items-center justify-center bg-[<%= product.bgcolor %>]">
             <img class="h-[12rem]" src="data:image/jpeg;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
           </div>

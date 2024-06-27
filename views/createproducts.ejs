@@ -1,56 +1,73 @@
 <%- include('./partials/header') %>
-
-<% if(success.length>0){ %>
-<div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-green-500">
-  <span class="inline-block mt-1 mb-1 text-white">
-    <%= success %>
-  </span>
-</div>
-<% } %>
-
-<% if(error.length>0){ %>
-<div class="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 p-3 rounded-md bg-red-500">
-  <span class="inline-block mt-1 mb-1 text-white">
-    <%= error %>
-  </span>
-</div>
-<% } %>
-
-<div class="min-h-screen flex flex-col">
-  <div class="container px-10 py-20 flex flex-grow">
-    <div class="w-[25%] flex h-screen flex-col items-start">
-      <div class="flex flex-col">
-        <a class="block w-fit mb-2" href="">All Products</a>
-        <a class="block w-fit mb-2" href="">Create new product</a>
+<div class="container w-full h-full flex items-center justify-between mt-[10vh] px-5 md:px-10 py-10">
+  <main class="w-full md:w-3/4 bg-white p-8 shadow-lg rounded-lg md:ml-4  md:mt-0">
+    <div class="w-full h-20 flex items-center justify-between">
+      <h2 class="text-2xl font-bold mb-4">Create New Product</h2>
+      <% if(success.length > 0) { %>
+      <div id="success-message" class="p-3 rounded-md bg-green-500">
+        <span class="inline-block mt-1 mb-1 text-white">
+          <%= success %>
+        </span>
+        <div class="mt-2 h-1 bg-white w-full relative">
+          <div id="success-bar" class="absolute top-0 left-0 h-full bg-green-700 w-full"></div>
+        </div>
       </div>
+      <% } %>
+      <% if(error.length > 0) { %>
+      <div id="error-message" class="p-3 rounded-md bg-red-500">
+        <span class="inline-block mt-1 mb-1 text-white">
+          <%= error %>
+        </span>
+        <div class="mt-2 h-1 bg-white w-full relative">
+          <div id="error-bar" class="absolute top-0 left-0 h-full bg-red-700 w-full"></div>
+        </div>
+      </div>
+      <% } %>
     </div>
-    <main class="w-3/4 bg-white p-8 shadow ml-4">
-      <h2 class="text-xl font-bold mb-4">Create New Product</h2>
-      <form autocomplete="off" action="/products/create" method="post" enctype="multipart/form-data">
-        <div class="mb-6">
-          <h3 class="text-lg font-semibold mb-2">Product Details</h3>
-          <div class="mb-4">
-            <label class="block mb-2 font-medium">Product Image</label>
-            <input name="image" type="file" class="py-2 px-4 rounded" value="Select File">
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <input name="name" type="text" placeholder="Product Name" class="border p-2 rounded w-full">
-            <input name="price" type="text" placeholder="Product Price" class="border p-2 rounded w-full">
-            <input name="discount" type="text" placeholder="Discount Price" class="border p-2 rounded w-full">
-          </div>
+    <form autocomplete="off" action="/products/create" method="post" enctype="multipart/form-data">
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold mb-2">Product Details</h3>
+        <div class="mb-4">
+          <label class="block mb-2 font-medium">Product Image</label>
+          <input name="image" type="file" class="py-2 px-4 rounded border border-gray-300">
         </div>
-
-        <div>
-          <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
-          <div class="grid grid-cols-2 gap-4">
-            <input name="bgcolor" type="text" placeholder="Background Color" class="border p-2 rounded w-full">
-            <input name="panelcolor" type="text" placeholder="Panel Color" class="border p-2 rounded w-full">
-            <input name="textcolor" type="text" placeholder="Text Color" class="border p-2 rounded w-full">
-          </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input name="name" type="text" placeholder="Product Name" class="border p-2 rounded w-full">
+          <input name="price" type="text" placeholder="Product Price" class="border p-2 rounded w-full">
+          <input name="discount" type="text" placeholder="Discount Price" class="border p-2 rounded w-full">
         </div>
-        <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white" type="submit" value="Create New Product">
-      </form>
-    </main>
-  </div>
+      </div>
+      <div class="mb-6">
+        <h3 class="text-lg font-semibold mb-2">Panel Details</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input name="bgcolor" type="text" placeholder="Background Color" class="border p-2 rounded w-full">
+          <input name="panelcolor" type="text" placeholder="Panel Color" class="border p-2 rounded w-full">
+          <input name="textcolor" type="text" placeholder="Text Color" class="border p-2 rounded w-full">
+        </div>
+      </div>
+      <input class="px-5 py-2 rounded mt-3 bg-blue-500 text-white hover:bg-blue-600" type="submit" value="Create New Product">
+    </form>
+  </main>
 </div>
 <%- include('./partials/footer') %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const successMessage = document.getElementById('success-message');
+    const successBar = document.getElementById('success-bar');
+    const errorMessage = document.getElementById('error-message');
+    const errorBar = document.getElementById('error-bar');
+
+    if (successMessage) {
+      successBar.style.transition = 'width 5s linear';
+      successBar.style.width = '0%';
+      setTimeout(() => successMessage.remove(), 5000);
+    }
+
+    if (errorMessage) {
+      errorBar.style.transition = 'width 5s linear';
+      errorBar.style.width = '0%';
+      setTimeout(() => errorMessage.remove(), 5000);
+    }
+  });
+</script>
